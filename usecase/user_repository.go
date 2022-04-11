@@ -3,7 +3,7 @@ package usecase
 import (
 	"github.com/jinzhu/gorm"
 
-	"github.com/psychedelicnekopunch/gin-clean-architecture/app/domain"
+	"go_sample_api/domain"
 )
 
 type UserRepository interface {
