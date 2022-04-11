@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/psychedelicnekopunch/gin-clean-architecture/app/domain"
+	"go_sample_api/domain"
 )
 
 type UserInteractor struct {
@@ -11,7 +11,6 @@ type UserInteractor struct {
 
 func (interactor *UserInteractor) Get(id int) (user domain.UsersForGet, resultStatus *ResultStatus) {
 	db := interactor.DB.Connect()
-	// Users の取得
 	foundUser, err := interactor.User.FindByID(db, id)
 	if err != nil {
 		return domain.UsersForGet{}, NewResultStatus(404, err)

@@ -17,9 +17,9 @@ func NewDB() *DB {
 	c := NewConfig()
 	return newDB(&DB{
 		Host:     c.DB.Production.Host,
-		Username: c.DB.Production.UserName,
+		Username: c.DB.Production.Username,
 		Password: c.DB.Production.Password,
-		DBName:   c.DB.Production.DbName,
+		DBName:   c.DB.Production.DBName,
 	})
 }
 
@@ -27,9 +27,9 @@ func NewTestDB() *DB {
 	c := NewConfig()
 	return newDB(&DB{
 		Host:     c.DB.Test.Host,
-		Username: c.DB.Test.UserName,
+		Username: c.DB.Test.Username,
 		Password: c.DB.Test.Password,
-		DBName:   c.DB.Test.DbName,
+		DBName:   c.DB.Test.DBName,
 	})
 }
 

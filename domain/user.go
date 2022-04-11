@@ -1,6 +1,6 @@
 package domain
 
-type User struct {
+type Users struct {
 	ID          int
 	ScreenName  string
 	DisplayName string
@@ -10,18 +10,18 @@ type User struct {
 	UpdatedAt   int64
 }
 
-type GetUserResponse struct {
-	ID          int     `json:id`
-	ScreenName  string  `json:screenName`
-	DisplayName string  `json:displayName`
-	Email       *string `json:email`
+type UsersForGet struct {
+	ID          int     `json:"id"`
+	ScreenName  string  `json:"screenName"`
+	DisplayName string  `json:"displayName"`
+	Email       *string `json:"email"`
 }
 
-func (u *User) BuildGetUserResponse() GetUserResponse {
-	user := GetUserResponse{}
-	user.DisplayName = u.DisplayName
+func (u *Users) BuildForGet() UsersForGet {
+	user := UsersForGet{}
 	user.ID = u.ID
 	user.ScreenName = u.ScreenName
+	user.DisplayName = u.DisplayName
 	if u.Email != nil {
 		user.Email = u.Email
 	} else {

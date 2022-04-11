@@ -1,17 +1,11 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"go_sample_api/infrastructure"
 )
 
 func main() {
-	r := gin.Default()
-	r.GET("/sample", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "content",
-		})
-	})
+	db := infrastructure.NewDB()
+	r := infrastructure.NewRouting(db)
 	r.Run()
 }

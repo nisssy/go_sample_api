@@ -4,6 +4,8 @@ import (
 	"errors"
 
 	"github.com/jinzhu/gorm"
+
+	"go_sample_api/domain"
 )
 
 type UserRepository struct{}

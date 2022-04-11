@@ -1,6 +1,10 @@
 package infrastructure
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+
+	"go_sample_api/interfaces/controllers"
+)
 
 type Routing struct {
 	DB   *DB
@@ -15,13 +19,13 @@ func NewRouting(db *DB) *Routing {
 		Gin:  gin.Default(),
 		Port: c.Routing.Port,
 	}
-
+	r.setRouting()
 	return r
 }
 
-func (r *Routing) SetRouting() {
-	usersController := ""
-	r.Gin.GET("", func(ctx *gin.Context) {})
+func (r *Routing) setRouting() {
+	usersController := controllers.NewUsersController(r.DB)
+	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
 }
 
 func (r *Routing) Run() {

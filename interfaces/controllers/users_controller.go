@@ -2,6 +2,9 @@ package controllers
 
 import (
 	"strconv"
+
+	"go_sample_api/interfaces/database"
+	"go_sample_api/usecase"
 )
 
 type UsersController struct {
