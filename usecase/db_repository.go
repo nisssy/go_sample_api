@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type DBRepository interface {

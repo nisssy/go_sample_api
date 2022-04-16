@@ -1,10 +1,15 @@
 package infrastructure
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"go_sample_api/domain"
+
+	_ "github.com/mattn/go-sqlite3"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
+// 今回はsqliteを使用するのでHost, Username, Passwordは省略可
+// posgreに変更する際に使用
 type DB struct {
 	Host       string
 	Username   string
@@ -34,10 +39,12 @@ func NewTestDB() *DB {
 }
 
 func newDB(d *DB) *DB {
-	db, err := gorm.Open("mysql", d.Username+":"+d.Password+"@tcp("+d.Host+")/"+d.DBName+"?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open(sqlite.Open(d.DBName+".db"), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
+	// テーブル作成
+	db.AutoMigrate(&domain.User{})
 	d.Connection = db
 	return d
 }
